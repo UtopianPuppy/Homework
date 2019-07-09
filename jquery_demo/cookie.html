@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <!--<script src="js/easypiechart.js"></script>-->
+    <script src="js/jquery.easypiechart.js"></script>
+</head>
+<body>
+<form action="">
+    <input type="text" id="username"/>
+    <input type="password" id="password">
+    <button id="login">Login</button>
+</form>
+<div id="pieChart" data-percent="55"></div>
+
+<script type="text/javascript">
+    $("#login").click(function () {
+        var username = $("#username").val();
+        var password = $('#password').val();
+//        $.cookie('auth', '');
+        $.cookie('auth', username + ':' + password);
+//        console.log($.cookie('auth'));
+        window.location.href = 'receiveCookie.html';
+        return false
+    });
+    $('#pieChart').easyPieChart({
+        animate: 1000,
+        size:80,
+        lineWidth: 5,
+        trackColor: '#eeeeee',
+        barColor: '#25a9e2'
+    })
+
+    $(function () {
+    })
+</script>
+</body>
+</html>

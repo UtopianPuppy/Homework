@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格样式</title>
+    <link rel="stylesheet" href="css/simplecss.css">
+    <style type="text/css">
+        .table {
+            width: 100%;
+            min-width: 100%;
+            /*margin-bottom: 20px;*/
+            /*让单元格边框重合*/
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            border-bottom: 1px solid #dddddd;
+            text-align: center;
+            padding: 6px 12px;
+        }
+        .table-bordered td, .table-bordered th {
+            border: 1px solid #CCCCCC;
+        }
+        .table-hover tr:hover {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-push-3">
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>序号</th>
+                        <th>姓名</th>
+                        <th>年龄</th>
+                        <th>性别</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>张三</td>
+                        <td>25</td>
+                        <td>男</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>张三</td>
+                        <td>25</td>
+                        <td>男</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>张三</td>
+                        <td>25</td>
+                        <td>男</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>张三</td>
+                        <td>25</td>
+                        <td>男</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

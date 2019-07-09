@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+<ul>
+    <li><button class="down">↓</button>新闻标题1<button class="up">↑</button></li>
+    <li><button class="down">↓</button>新闻标题2<button class="up">↑</button></li>
+    <li><button class="down">↓</button>新闻标题3<button class="up">↑</button></li>
+    <li><button class="down">↓</button>新闻标题4<button class="up">↑</button></li>
+    <li><button class="down">↓</button>新闻标题5<button class="up">↑</button></li>
+    <li><button class="down">↓</button>新闻标题6<button class="up">↑</button></li>
+</ul>
+
+<script>
+    $(function () {
+        $('.down').click(function () {
+            var $nowLi = $(this).closest('li');
+            var $nextLi = $(this).closest('li').next();
+            if ($nextLi.length === 0) {
+                alert('下面没有元素了')
+            }
+
+            $nowLi.insertAfter($nextLi)
+        });
+
+        $('.up').click(function () {
+            var $nowLi = $(this).closest('li');
+            var $prevLi = $(this).closest('li').prev();
+            if ($prevLi.length === 0) {
+                alert('上面没有元素了')
+            }
+
+            $nowLi.insertBefore($prevLi)
+        })
+    })
+</script>
+</body>
+</html>

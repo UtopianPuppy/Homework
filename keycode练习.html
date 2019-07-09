@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box {
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            background-color: #00b3ee;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <!--keycode键盘码 在键盘事件发生的时候 记录对应按的是哪个键-->
+    <script type="text/javascript">
+        var oBox = document.getElementById('box');
+        var x = 0;
+        var y = 0;
+        document.onkeydown = function (ev) {
+            var ev = ev || event;
+//            指定方向键，w(87) s(83) a(65) d(68)
+//            console.log(ev.keyCode)
+            switch (ev.keyCode) {
+                case 87: y -= 10;
+                    break;
+                case 83: y += 10;
+                    break;
+                case 65: x -= 10;
+                    break;
+                case 68: x += 10;
+                    break;
+            }
+            oBox.style.left = x + 'px';
+            oBox.style.top = y + 'px';
+        }
+    </script>
+</body>
+</html>

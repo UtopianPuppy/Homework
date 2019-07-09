@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Parent(name, age) {
+        this.name = name;
+        this.age = age
+    }
+    Parent.prototype.showName = function () {
+        alert(this.name)
+    };
+    function Child(name, age) {
+        //没有new关键字调用的Parent函数只是一个普通函数，它的对象是window
+//        Parent(name, age)
+        Parent.call(this, name, age)
+    }
+    Child.prototype.showName = function () {
+        alert(this.name)
+    };
+
+    var c1 = new Child("小强", 20);
+    c1.showName();
+</script>
+</body>
+</html>

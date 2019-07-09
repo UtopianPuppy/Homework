@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+
+<script>
+//    var oBox = document.getElementById('box');
+//    var difX = null;
+//    var difY = null;
+//    oBox.onmousedown = function (ev) {
+//        fnDown()
+//    };
+
+//    function fnMove(ev2) {
+//        var ev = ev2 || window.event;
+//        oBox.style.left = ev.clientX - difX + 'px';
+//        oBox.style.top = ev.clientY - difY + 'px';
+//    }
+
+//    function fnUp() {
+//        document.onmousemove = null;
+//        document.onmouseup = null
+//    }
+
+//    function fnDown() {
+//        var ev = ev || window.event;
+//        difX = ev.clientX - oBox.offsetLeft;
+//        difY = ev.clientY - oBox.offsetTop;
+//
+//        document.onmousemove = function (ev2) {
+//            fnMove(ev2)
+//        };
+//        document.onmouseup = function () {
+//            fnUp()
+//        }
+//    }
+
+    function Drag() {
+        this.oBox = document.getElementById('box');
+        this.difX = null;
+        this.difY = null;
+    }
+
+    Drag.prototype.fnMove = function (ev2) {
+        var ev = ev2 || window.event;
+        this.oBox.style.left = ev.clientX - this.difX + 'px';
+        this.oBox.style.top = ev.clientY - this.difY + 'px';
+    };
+
+    Drag.prototype.fnUp = function () {
+        document.onmousemove = null;
+        document.onmouseup = null
+    };
+
+    Drag.prototype.fnDown = function () {
+        var that = this;
+        var ev = ev || window.event;
+        this.difX = ev.clientX - this.oBox.offsetLeft;
+        this.difY = ev.clientY - this.oBox.offsetTop;
+
+        document.onmousemove = function () {
+            that.fnMove()
+        };
+        document.onmouseup = function () {
+            that.fnUp()
+        }
+    };
+
+    Drag.prototype.init = function () {
+        var that = this;
+        this.oBox.onmousedown = function () {
+            that.fnDown()
+        };
+    };
+
+    var d1 = new Drag();
+    d1.init();
+</script>
+</body>
+</html>

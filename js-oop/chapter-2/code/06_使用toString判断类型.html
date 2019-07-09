@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //总结：判断类型的方法
+    //1 constructor 2 instanceof 3 toString
+    var arr = [];
+    console.log(arr.constructor == Array); //true
+    console.log(arr instanceof Array); //true
+
+    //call: 改变内部this的指向
+    console.log(Object.prototype.toString.call(arr)) //[object Array]
+
+    //推荐使用第三种toString
+</script>
+</body>
+</html>

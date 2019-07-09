@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        button {
+            margin-top: 0;
+            width: 50px;
+            height: 30px;
+        }
+        p {
+            margin-top: 0;
+            width: 400px;
+            height: 200px;
+            border: 1px solid #cccccc;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!--点击+号, id为p1的p元素中的字体变大2个像素点, 点击-号,id为p1的p元素中的字体变小3个像素-->
+    <p id="p1">战神天下第一</p>
+    <button id="btn1">+</button>
+    <button id="btn2">-</button>
+    <script type="text/javascript">
+        var oText = document.getElementById("p1");
+        var oBtn1 = document.getElementById("btn1");
+        var oBtn2 = document.getElementById("btn2");
+        var fontSize = 20;
+        oBtn1.onclick = function () {
+            fontSize = fontSize + 2;
+            oText.style.fontSize = fontSize + "px";
+        };
+        oBtn2.onclick = function () {
+            fontSize = fontSize - 3;
+            oText.style.fontSize = fontSize + "px";
+        }
+    </script>
+</body>
+</html>

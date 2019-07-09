@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style type="text/css">
+        #wrap {
+            width: 400px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container form-horizontal" id="wrap">
+        <div class="form-group">
+            <div class="col-md-3">
+                <label for="qq" class="control-label">QQ号：</label>
+            </div>
+            <div class="col-md-9">
+                <input id="qq" class="form-control" type="text" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label for="password" class="control-label">密码：</label>
+            </div>
+            <div class="col-md-9">
+                <input id="password" class="form-control" type="password" />
+            </div>
+        </div>
+        <div class="form-group">
+            <button id="btn" class="btn btn-danger col-md-offset-10">登录</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //1 判断格式
+//            QQ号的长度：5-11位
+//            QQ号必须是数字
+//            QQ的密码：6-16位
+        //2 判断用户名和密码是否正确
+//            正确的用户名和密码是多少？ 假设： 734507502 && 123456
+        //3 流程：a 用户点击登录按钮 b 开始判断--拿用户名输入的和正确的比对 c 判断的结果返回给用户
+        var oBtn = document.getElementById("btn");
+        var oQQ = document.getElementById("qq");
+        var oPassword = document.getElementById("password");
+        var qq = 734507502;
+        var password = 123456;
+//        给按钮绑定事件
+        oBtn.onclick = function () {
+//            先判断格式
+//            1 获取用户名和qq号
+            var ipt_qq = oQQ.value;
+            var ipt_password = oPassword.value;
+//            console.log(ipt_qq, ipt_password);
+//            2 判断qq号的长度
+            if (ipt_qq.length < 5 || ipt_qq.length > 11) {
+                alert("QQ号码长度不正确");
+                return
+            }
+//            3 判断是否是数字
+            var res = Number(ipt_qq);
+            if (isNaN(res)){
+                alert("QQ号码格式不正确");
+                return
+            }
+
+//            4 判断密码格式 6-16位
+            if (ipt_password.length < 6 || ipt_password.length > 16) {
+                alert("密码长度不符合规定")
+            }
+
+//            判断
+            if (ipt_qq == qq && ipt_password == password ){
+                alert("登录成功！")
+            } else {
+                alert("登录失败！")
+            }
+        }
+    </script>
+</body>
+</html>

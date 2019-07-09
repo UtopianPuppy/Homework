@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        select {
+            width: 200px;
+            height: 600px;
+            border: 1px solid;
+        }
+    </style>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+<select multiple id="sel1">
+    <option value="">basketball</option>
+    <option value="">football</option>
+    <option value="">baseball</option>
+    <option value="">badminton</option>
+    <option value="">table tennis</option>
+    <option value="">rugby</option>
+    <option value="">billiards</option>
+</select>
+
+<button>--向右--></button>
+<button>--全右--></button>
+<button><--向左--</button>
+<button><--全左--</button>
+
+<select multiple id="sel2"></select>
+
+<script type="text/javascript">
+    $(function () {
+        $('button:eq(0)').click(function () {
+            $('#sel1 option').each(function (index, item) {
+                if ($(item).prop("selected")) {
+                    $(item).appendTo($('#sel2'))
+                }
+            })
+        });
+
+        $('button:eq(1)').click(function () {
+            $('#sel1 option').each(function (index, item) {
+                $(item).appendTo($('#sel2'))
+            })
+        });
+
+        $('button:eq(2)').click(function () {
+            $('#sel2 option').each(function (index, item) {
+                if ($(item).prop("selected")) {
+                    $(item).appendTo($('#sel1'))
+                }
+            })
+        });
+
+        $('button:eq(3)').click(function () {
+            $('#sel2 option').each(function (index, item) {
+                $(item).appendTo($('#sel1'))
+            })
+        })
+    })
+</script>
+
+</body>
+</html>

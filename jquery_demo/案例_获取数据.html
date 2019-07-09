@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+<button>获取数据</button>
+
+<script>
+    $(function () {
+        $('button').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: 'https://cnodejs.org/api/v1/topics',
+                data: {page: 1, limit: 10},
+                success: function (result) {
+                    var html_str = '';
+                    for (var i in result.data) {
+                        html_str += result.data[i].title + '<br>'
+                    }
+                    document.body.innerHTML = html_str;
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

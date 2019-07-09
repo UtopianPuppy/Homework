@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #box1, #box2, #box3 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            float: left;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+<div id="box1"></div>
+<div id="box2"></div>
+<div id="box3"></div>
+<script type="text/javascript">
+    var oBox1 = document.getElementById('box1');
+    var oBox2 = document.getElementById('box2');
+    var oBox3 = document.getElementById('box3');
+    function changColor(obj) {
+        var flag = true;
+        obj.onclick = function () {
+            if (flag) {
+                obj.style.backgroundColor = 'blue'
+            }else {
+                obj.style.backgroundColor = 'red'
+            }
+            flag = !flag
+        }
+    }
+    changColor(oBox1);
+    changColor(oBox2);
+    changColor(oBox3)
+</script>
+<script type="text/javascript">
+//    (function () {
+//        alert('1')
+//    })()
+//    函数自执行
+//    function fn(n) {
+//        console.log(n)
+//        console.log(typeof n)
+//        if (typeof n === 'function') {
+//            n()
+//        }
+//    }
+//    function fn2() {
+//        alert(2)
+//    }
+//    fn(fn2)
+
+</script>
+</body>
+</html>

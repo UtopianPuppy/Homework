@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="box">hello world!</div>
+    <button id="btn">点击按钮</button>
+    <script type="text/javascript">
+        var oBox = document.getElementById("box");
+        var oBtn = document.getElementById("btn");
+//        function fn() {
+////            alert(oBox.innerHTML);
+//            oBox.innerHTML = "hell yeah!";
+//        }
+//        oBtn.onclick = fn;
+        oBtn.onclick = function () {
+            oBox.innerHTML = "<span style='color: red'>hell yeah!</span>";
+//            oBox.innerText = "<span style='color: red'>hell yeah!</span>";
+        }
+    </script>
+</body>
+</html>

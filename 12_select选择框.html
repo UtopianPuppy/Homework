@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--注意： name是加在select上的，value加在option上-->
+<!--multiple表示可以按住shift多选-->
+<select name="city" size="4" multiple>
+    <!--这里value=北京 发送数据时 发送的就是“北京”-->
+    <option value="北京">北京</option>
+    <!--这里value="" 发送的时候就会发送一个空的东西-->
+    <option value="">上海</option>
+    <!--不写value 默认会发送的是option内部的内容-->
+    <option>广州</option>
+    <option value="">成都</option>
+</select>
+</body>
+</html>

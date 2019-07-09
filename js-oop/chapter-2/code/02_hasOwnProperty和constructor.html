@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //hasOwnProperty 查看自身是否有某个属性
+    function Fn1() {
+        this.name = 'xxx'
+    }
+    //age 加在原型对象身上
+    Fn1.prototype.age = 20;
+    var f1 = new Fn1();
+//    alert(f1.hasOwnProperty('name')); //true
+//    alert(f1.hasOwnProperty('age')) //false
+
+    //应用场景：检测某个属性是否属于对象的时候，通常拿来做判断
+
+    //constructor 查看构造函数
+    console.log(f1.constructor);
+    console.log(Fn1.prototype.constructor);
+
+    //应用场景：简单的判断
+    var arr = [];
+    console.log(arr.constructor === Array) //判断arr是否为数组
+</script>
+</body>
+</html>

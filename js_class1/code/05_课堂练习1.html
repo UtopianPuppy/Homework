@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--在两个输入框中输入两个数字,点击按钮的时候,计算出两个数字的差并且显示到id为result的div中-->
+    <input type="text" id="ipt1" /> - <br>
+    <input type="text" id="ipt2" />
+    <button id="btn">click</button>
+    <div id="result" style="border: 1px solid black; width: 50px; height: 20px"></div>
+    <script type="text/javascript">
+        var oIpt1 = document.getElementById("ipt1");
+        var oIpt2 = document.getElementById("ipt2");
+        var oBtn = document.getElementById("btn");
+        var oBox = document.getElementById("result");
+        oBtn.onclick = function () {
+            var num1 = oIpt1.value;
+            var num2 = oIpt2.value;
+            var result = num1 - num2;
+            oBox.innerHTML = result;
+        }
+    </script>
+</body>
+</html>

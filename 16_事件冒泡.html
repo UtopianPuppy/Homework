@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="ipt" /><button id="btn">添加</button>
+    <ul>
+        <li>lksjdf</li>
+        <li>asdf</li>
+        <li>fafafaf</li>
+    </ul>
+
+    <script type="text/javascript">
+        var oIpt = document.getElementById('ipt');
+        var oBtn = document.getElementById('btn');
+        var oUl = document.getElementsByTagName('ul')[0];
+//        添加绑定事件
+        oBtn.onclick = function () {
+            var inputValue = oIpt.value;
+//            创建li元素
+            var oLi = document.createElement('li');
+            oLi.innerHTML = inputValue;
+            oUl.appendChild(oLi);
+        };
+//        var aLi = document.getElementsByTagName('li');
+//        for (var i=0;i<aLi.length;i++) {
+//            aLi[i].onclick = function () {
+//                this.style.color = '#0092ee'
+//            }
+//        }
+//        问题：时间不能绑定在新添加的li元素上面
+//        解决方法：事件冒泡
+//        将事件绑定在元素父级：ul
+        oUl.onclick = function (ev) {
+//            ev.target 就是被点击的元素
+            ev.target.style.color = '#0092ee'
+        }
+    </script>
+</body>
+</html>

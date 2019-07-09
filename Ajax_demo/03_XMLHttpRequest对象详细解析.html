@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .mes {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+用户名：<input type="text" id="username"/><span class="mes"></span>
+
+<script type="text/javascript">
+    var oIpt = document.getElementById('username');
+    var oSpan = document.getElementsByClassName('mes')[0];
+    oIpt.onblur = function (ev) {
+        //XMLHttpRequest对象 用于在客户端与服务器之间传输数据
+        //步骤 1 打开浏览器
+        var xhr = null;
+        try {
+            xhr = new XMLHttpRequest();
+        } catch (e) {
+            xhr = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        //2 输入网址 open方法可以指定发送数据的方式和发送数据的地址以及是否异步
+        //true 表示用异步的方式发送请求
+        xhr.open('get', '/getdata' + this.value, true);
+        //3 点击按钮 发送数据
+        xhr.send();
+        //4 监听数据 监听的是 xhr.readytate 的状态
+        xhr.onreadystatechange = function (ev) {
+            //五种状态：
+            //0：表示ajax对象创建成功（初始化），但是还没有调用open方法
+            //1: 表示一调用send方法，正在发送数据（载入数据）
+            //2: send方法发送完成，已经收到响应内容（载入完成）
+            //3: 表示正在解析内容（解析），（注：收到响应内容后，还需要解析内容）
+            //4：响应内容解析完成，可以使用数据了（注：状态为4的时候说明所有流程已经完成）
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                //status 表示http状态码 200 表示响应正确
+                //.responseText 返回的数据放在responseText属性里
+                alert(xhr.responseText)
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

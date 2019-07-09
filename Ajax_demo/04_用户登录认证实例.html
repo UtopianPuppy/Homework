@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    用户名：<input type="text" id="username" /><br>
+    密码: <input type="password" id="password" />
+    <input type="submit" value="提交" id="btn">
+
+    <script type="text/javascript">
+        var oBtn = document.getElementById('btn');
+        var oUser = document.getElementById('username');
+        var oPass = document.getElementById('password');
+
+        oBtn.onclick = function (ev) {
+            var xhr = null;
+            try {
+                xhr = new XMLHttpRequest();
+            } catch (e) {
+                xhr = new ActiveXObject('Microsoft.XMLHTTP');
+            }
+
+            xhr.open('post', '/login', true);
+            //发送数据 get方法数据在查询字符中 post在请求体中
+            xhr.send('username=' + oUser.value + '&password=' + oPass.value);
+            //监听readystatus状态 4
+            xhr.onreadystatechange = function (ev) {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+//                    alert(xhr.responseText)
+                    var obj = JSON.parse(xhr.responseText);
+                    if (obj.status === 1) {
+                        window.location.href = 'http://nodeing.com';
+                    } else {
+                        alert(obj.message)
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .mes {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+用户名：<input type="text" id="username"/><span class="mes"></span>
+
+<script type="text/javascript">
+    var oIpt = document.getElementById('username');
+    var oSpan = document.getElementsByClassName('mes')[0];
+    oIpt.onblur = function (ev) {
+        var iptValue = this.value;
+        var xhr = new XMLHttpRequest();
+        //2
+        xhr.open('get', '/getdata?username=' + iptValue, true);
+        xhr.send();
+        xhr.onreadystatechange = function (ev) {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+
+//                alert(xhr.responseText)
+                var obj = JSON.parse(xhr.responseText);
+                oSpan.innerHTML = obj.message;
+            }
+        }
+    }
+</script>
+</body>
+</html>

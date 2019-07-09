@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="btn">点击我</button>
+    <script type="text/javascript">
+        function fn() {
+            alert("傻子");
+        }
+        var oBtn = document.getElementById("btn");
+//        当oBtn发生了一个点击事件，用函数fn来处理
+//        注意：oBtn.onclick = fn 与 oBtn.onclick = fn()的区别
+//        前者是以事件调出函数，后者无论事件是否发生都会被调用
+        oBtn.onclick = fn;//fn一定不能加括号
+    </script>
+</body>
+</html>

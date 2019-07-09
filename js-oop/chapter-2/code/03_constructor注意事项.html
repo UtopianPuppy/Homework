@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //constructor 注意事项：
+    //1 constructor自动生成 可以被修改 注意尽量避免修改
+
+    function Fn1() {
+
+    }
+
+    //这种写法把一个对象赋值给了原型对象，原型对象被新对象覆盖了，需要手动修复
+    Fn1.prototype = {
+        name: 20,
+        age: 30,
+        constructor: Fn1
+    };
+    console.log(Fn1.prototype.constructor)
+</script>
+
+</body>
+</html>

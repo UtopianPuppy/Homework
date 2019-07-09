@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //call方法：调用一个对象的一个方法，以另一个对象替换当前对象
+    function Person1(name) {
+        this.name = name
+    }
+    Person1.prototype.showName = function () {
+        alert(this.name)
+    };
+    function Person2(name) {
+        this.name = name
+    }
+
+    var p1 = new Person1("小强");
+    var p2 = new Person2("小花");
+
+//    p1.showName();
+//    p2.showName();
+    //p1把自身showName方法借给了p2
+//    p1.showName.call(p2);
+
+    function Fn1() {
+
+    }
+    Fn1.prototype.showAge = function (age) {
+        alert(age);
+    };
+
+    function Fn2() {
+
+    }
+
+    var f1 = new Fn1();
+    var f2 = new Fn2();
+//     f1.showAge(20);
+//     f1.showAge.call(f2,30)
+
+    //apply方法：效果跟call方法一样，只是传参方式不同
+    //简单应用：写一个函数，参数个数不确定，把参数用 - 连接起来
+    function fn() {
+        //arguments对象：内置对象，里面包含了所有传入的参数，参数的集合，不是数组
+//        console.log(arguments)
+        //[]数组身上的join方法借给arguments对象使用
+        return [].join.call(arguments, '-')
+    }
+
+    var res = fn(1,2,45,6,7,888,1);
+//    var arr = [1,2,45,6,7,888,1];
+//    alert(arr.join('-'))
+    alert(res)
+</script>
+</body>
+</html>

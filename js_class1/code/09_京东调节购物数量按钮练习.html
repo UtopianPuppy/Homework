@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" id="btn1" value="-"/>
+<input type="text" value="1" id="box"/>
+<input type="button" value="+" id="btn2"/>
+<script type="text/javascript">
+    var oBtn1 = document.getElementById("btn1");
+    var oBtn2 = document.getElementById("btn2");
+    var oBox = document.getElementById("box");
+    oBtn1.onclick = function () {
+        var num = oBox.value;
+        num--;
+        if(num === 0){
+            oBox.value = 1;
+        }else {
+            oBox.value = num;
+        }
+    };
+    oBtn2.onclick = function () {
+        var num = oBox.value;
+        num++;
+        oBox.value = num;
+    }
+</script>
+</body>
+</html>

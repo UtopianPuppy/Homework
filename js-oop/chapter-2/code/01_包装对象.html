@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var s1 = "nodeing.com";
+//    alert(typeof s1); //string
+//    var s2 = new String("nodeing .com");
+//    alert(typeof s2); //object
+
+    //字符串、数字、布尔都有对应的包装对象
+    String.prototype.test = function () {
+        alert(1)
+    };
+
+//    s1.test(); //包装对象把方法给了s1使用之后会消失
+//    s1.num = 10;
+//    alert(s1.num);
+    //s1使用的是对应的包装对象上的方法
+    //过程：1 创建一个对象 2 调用包装对象上的方法 3 包装对象会消失
+
+    function Fn1() {
+        this.num = 20;
+    }
+
+    var f1 = new Fn1();
+    console.log(f1);
+
+    Fn1.prototype.num = 30;
+    Object.prototype.num = 40;
+    console.log(f1.__proto__ === Fn1.prototype);
+    //es6中 推荐使用Object.getPrototypeOf
+    console.log(Object.getPrototypeOf(f1) === f1.__proto__)
+
+//    alert(f1.num)
+</script>
+</body>
+</html>

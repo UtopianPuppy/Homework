@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+        }
+        div {
+            margin:20px auto;
+            width: 200px;
+            height: 200px;
+            display: none;
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">开关</button>
+    <div id="box"></div>
+    <script type="text/javascript">
+        var oBtn = document.getElementById("btn");
+        var oBox = document.getElementById("box");
+        var flag = true;
+        oBtn.onclick = function () {
+            if (flag === true){
+                oBox.style.display = "block"
+            }else if (flag === false){
+                oBox.style.display = "none"
+            }
+            flag = !flag
+        }
+    </script>
+</body>
+</html>

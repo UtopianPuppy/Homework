@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="btn">获取数据</button>
+    <ul id="ul1"></ul>
+
+<script type="text/javascript">
+    var oBtn = document.getElementById('btn');
+
+    oBtn.onclick = function (ev) {
+        var xhr = null;
+        try {
+            xhr = new XMLHttpRequest();
+        } catch (e) {
+            xhr = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+
+        xhr.open('get', '/getNews', true);
+        //发送数据 get方法数据在查询字符中 post在请求体中
+        xhr.send();
+        //监听readystatus状态 4
+        xhr.onreadystatechange = function (ev) {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+
+                var arr = JSON.parse(xhr.responseText);
+                var oUl = document.getElementById('ul1');
+
+                for (var i=0;i<arr.length;i++) {
+                    var oLi = document.createElement('li');
+                    oLi.innerHTML = arr[i].title;
+                    oUl.appendChild(oLi)
+                }
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

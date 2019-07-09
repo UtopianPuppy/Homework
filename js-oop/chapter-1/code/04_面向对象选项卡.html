@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #wrap1 button, #wrap2 button {
+            width: 60px;
+            height: 30px;
+        }
+        #wrap1 button.active, #wrap2 button.active {background-color: orangered}
+        #wrap1 div, #wrap2 div {
+            width: 300px;
+            height: 100px;
+            border: 1px solid red;
+            display: none;
+        }
+
+        #wrap1 div.active, #wrap2 div.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap1">
+    <button class="active">btn_1</button>
+    <button>btn_2</button>
+    <button>btn_3</button>
+    <button>btn_4</button>
+    <div class="active">nodeing_1</div>
+    <div>nodeing_2</div>
+    <div>nodeing_3</div>
+    <div>nodeing_4</div>
+</div>
+
+<div id="wrap2">
+    <button class="active">btn_1</button>
+    <button>btn_2</button>
+    <button>btn_3</button>
+    <button>btn_4</button>
+    <div class="active">nodeing_1</div>
+    <div>nodeing_2</div>
+    <div>nodeing_3</div>
+    <div>nodeing_4</div>
+</div>
+
+<script>
+    function Tab(id) {
+        this.oWrap = document.getElementById(id);
+        this.oBtn = this.oWrap.getElementsByTagName('button');
+        this.oDiv = this.oWrap.getElementsByTagName('div');
+    }
+
+    Tab.prototype.init = function () {
+        var that = this;
+        for (var i=0; i<this.oBtn.length; i++) {
+            this.oBtn[i].index = i;
+            this.oBtn[i].onmouseover = function () {
+                that.changeTab(this)
+            }
+        }
+    };
+
+    Tab.prototype.changeTab = function (obj) {
+        for (var j=0; j<this.oBtn.length; j++) {
+            this.oBtn[j].style.backgroundColor = 'white';
+            this.oDiv[j].style.display = 'none'
+        }
+        obj.style.backgroundColor = 'orangered';
+        this.oDiv[obj.index].style.display = 'block'
+    };
+
+    var p1 = new Tab('wrap1');
+    p1.init();
+
+    var p2 = new Tab('wrap2');
+    p2.init()
+</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .box1 {
+            width: 300px;
+        }
+        .clearfix {
+            *zoom: 1;
+        }
+        .clearfix:after {
+            content: ".";
+            display: block;
+            height: 0;
+            visibility: hidden;
+            clear: both;
+        }
+        .left {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            float: left;
+        }
+        .right {
+            width: 200px;
+            height: 100px;
+            background-color: red;
+            float: right;
+        }
+        #box2 {
+            width: 500px;
+            height: 100px;
+            background-color: black;
+        }
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1 clearfix">
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+    <div id="box2"></div>
+</body>
+</html>

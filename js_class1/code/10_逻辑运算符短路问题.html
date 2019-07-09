@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    function fn1() {
+        console.log("fn1执行了");
+        return true
+    }
+    function fn2() {
+        console.log("fn2执行了");
+        return true
+    }
+    var res = fn1() && fn2();
+    console.log(res)
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.wrapper {
+    text-align: center;
+    width: 1000px;
+    height: 310px;
+    margin: 100px auto;
+}
+.wrapper .heading {
+    background-color: black;
+    height: 40px;
+}
+.wrapper span {
+    margin-top: 5px;
+    display: inline-block;
+    line-height: 30px;
+    border: 1px solid #cccccc;
+    width: 100px;
+    height: 30px;
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+}
+.img-body img {
+    width: 1000px;
+    height: 280px;
+}

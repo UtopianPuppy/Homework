@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <style type="text/css">
+        #box1, #box2 {
+            width: 100px;
+            height: 50px;
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+<form action="" id="form-test">
+    <input type="text" name="form1"><br>
+    <input type="text" name="form2"><br>
+    <input type="text" name="form3"><br>
+    <input type="text" name="form4">
+</form>
+<button>提交</button>
+
+<script>
+//    var form = $('#form-content').serializeArray()
+//    console.log(form)
+
+    function serializeObject(ele) {
+        var o = {};
+        var obj = $(ele);
+        var a = obj.serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '')
+            } else {
+                o[this.name] = this.value || ''
+            }
+        });
+        return o;
+    }
+
+    $('button').click(function () {
+        var a = serializeObject('form#form-test');
+        console.log(a)
+    })
+</script>
+
+</body>
+</html>

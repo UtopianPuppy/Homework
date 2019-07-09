@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<iframe id="ifm" src="http://nodeing.com" frameborder="0" height="600px" width="400px"></iframe>
+<script>
+    //在一些很少见的情况下，constructor和instanceof无法判断出对象的类型
+    var oIframe = document.getElementById('ifm');
+    //iframe是一个内嵌的网页，这个内嵌的网页中有单独的window对象
+    var iframeWindow = oIframe.contentWindow;
+    var iframeString = iframeWindow.String;
+    var iStr1 = new iframeString();
+
+    console.log(iStr1.constructor === String); //false
+    console.log(iStr1 instanceof String); //false
+    console.log(Object.prototype.toString.call(iStr1) === '[object String]') //true
+</script>
+</body>
+</html>

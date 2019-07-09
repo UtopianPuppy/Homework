@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--在输入框中输入一个三位数，点击按钮后，在id为result的div中输出这个数的个位-->
+    <input type="text" id="ipt" />
+    <button id="btn">click</button>
+    <div id="result"></div>
+    <script type="text/javascript">
+        var oIpt = document.getElementById("ipt");
+        var oBtn = document.getElementById("btn");
+        var oBox = document.getElementById("result");
+        oBtn.onclick = function () {
+            var num = oIpt.value;
+            var num2 = num % 100 % 10;
+            oBox.innerHTML = num2;
+        }
+    </script>
+</body>
+</html>
