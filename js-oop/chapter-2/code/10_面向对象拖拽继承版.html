@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box, #box2 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        #box2 {
+            position: absolute;
+            left: 200px;
+            top: 0;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<div id="box2"></div>
+
+<script>
+
+    function Drag(id) {
+        this.oBox = document.getElementById(id);
+        this.difX = null;
+        this.difY = null;
+    }
+
+    Drag.prototype.fnMove = function (ev2) {
+        var ev = ev2 || window.event;
+        this.oBox.style.left = ev.clientX - this.difX + 'px';
+        this.oBox.style.top = ev.clientY - this.difY + 'px';
+    };
+
+    Drag.prototype.fnUp = function () {
+        document.onmousemove = null;
+        document.onmouseup = null
+    };
+
+    Drag.prototype.fnDown = function () {
+        var that = this;
+        var ev = ev || window.event;
+        this.difX = ev.clientX - this.oBox.offsetLeft;
+        this.difY = ev.clientY - this.oBox.offsetTop;
+
+        document.onmousemove = function () {
+            that.fnMove()
+        };
+        document.onmouseup = function () {
+            that.fnUp()
+        }
+    };
+
+    Drag.prototype.init = function () {
+        var that = this;
+        this.oBox.onmousedown = function () {
+            that.fnDown()
+        };
+    };
+
+    /*
+    子类
+     */
+    function ChildDrag(id) {
+        //继承属性
+        Drag.call(this, id)
+    }
+
+    extend(ChildDrag.prototype, Drag.prototype);
+
+    //重写父类方法
+    ChildDrag.prototype.fnMove = function (ev2) {
+        var ev = ev2 || window.event;
+        var L = ev.clientX - this.difX;
+        var T = ev.clientY - this.difY;
+        if (L < 0) {
+            L = 0
+        }
+        if (T < 0) {
+            T = 0
+        }
+        if (L > vw() - this.oBox.offsetWidth) {
+            L = vw() - this.oBox.offsetWidth
+        }
+        if (T > vh() - this.oBox.offsetHeight) {
+            T = vh() - this.oBox.offsetHeight
+        }
+        this.oBox.style.left = L + 'px';
+        this.oBox.style.top = T + 'px'
+    };
+
+    function vw() {
+        return document.documentElement.clientWidth
+    }
+    function vh() {
+        return document.documentElement.clientHeight
+    }
+
+    //继承方法
+    function extend(obj1, obj2) {
+        for (var attr in obj2) {
+            obj1[attr] = obj2[attr]
+        }
+    }
+
+    var d1 = new Drag('box');
+    var c1 = new ChildDrag('box2');
+    d1.init();
+    c1.init();
+</script>
+</body>
+</html>

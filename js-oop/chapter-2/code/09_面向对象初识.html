@@ -13,17 +13,42 @@
     Parent.prototype.showName = function () {
         alert(this.name)
     };
+    Parent.prototype.num = 21;
+    Parent.prototype.num1 = 31;
+    Parent.prototype.num2 = 41;
+    Parent.prototype.num3 = 51;
+    //属性的继承
     function Child(name, age) {
         //没有new关键字调用的Parent函数只是一个普通函数，它的对象是window
 //        Parent(name, age)
         Parent.call(this, name, age)
     }
-    Child.prototype.showName = function () {
-        alert(this.name)
+//    Child.prototype.showName = function () {
+//        alert(this.name)
+//    };
+
+    //方法的继承
+    //对象引用，两个对象指向同一个内存地址，任何一个对象修改都会影响另一个对象
+//    Child.prototype = Parent.prototype;
+
+    //避免对象引用
+    function extend(child, parent) {
+        for (var attr in parent) {
+            child[attr] = parent[attr]
+        }
+    }
+    extend(Child.prototype, Parent.prototype);
+
+    Child.prototype.showAge = function () {
+        alert(this.age);
     };
 
     var c1 = new Child("小强", 20);
-    c1.showName();
+//    c1.showName();
+//    c1.showAge()
+    var p1 = new Parent("xiaohua", 21);
+    console.log(c1);
+    console.log(p1)
 </script>
 </body>
 </html>

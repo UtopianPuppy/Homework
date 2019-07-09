@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box, #box1, #box2, #box3 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        #box1 {
+            left: 110px;
+            background-color: gold;
+        }
+        #box2 {
+            left: 220px;
+            background-color: blue;
+        }
+        #box3 {
+            left: 330px;
+            background-color: deeppink;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<div id="box1"></div>
+<div id="box2"></div>
+<div id="box3"></div>
+
+<script>
+
+    function Drag(id) {
+        this.oBox = document.getElementById(id);
+        this.difX = null;
+        this.difY = null;
+    }
+
+    Drag.prototype.fnMove = function (ev2) {
+        var ev = ev2 || window.event;
+        this.oBox.style.left = ev.clientX - this.difX + 'px';
+        this.oBox.style.top = ev.clientY - this.difY + 'px';
+    };
+
+    Drag.prototype.fnUp = function () {
+        document.onmousemove = null;
+        document.onmouseup = null
+    };
+
+    Drag.prototype.fnDown = function () {
+        var that = this;
+        var ev = ev || window.event;
+        this.difX = ev.clientX - this.oBox.offsetLeft;
+        this.difY = ev.clientY - this.oBox.offsetTop;
+
+        document.onmousemove = function () {
+            that.fnMove()
+        };
+        document.onmouseup = function () {
+            that.fnUp()
+        }
+    };
+
+    Drag.prototype.init = function () {
+        var that = this;
+        this.oBox.onmousedown = function () {
+            that.fnDown()
+        };
+    };
+
+
+
+    var d1 = new Drag('box');
+    d1.init();
+</script>
+</body>
+</html>
