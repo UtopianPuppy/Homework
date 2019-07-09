@@ -34,10 +34,16 @@
 
 <script>
 
-    function Drag(id) {
-        this.oBox = document.getElementById(id);
+    function Drag() {
+        this.oBox = null;
         this.difX = null;
         this.difY = null;
+        //设定一个全局变量来关联options对象
+        this.settings = {
+            beforeDown: function () {},
+            beforeMove: function () {},
+            beforeUp: function () {}
+        };
     }
 
     Drag.prototype.fnMove = function (ev2) {
@@ -58,24 +64,60 @@
         this.difY = ev.clientY - this.oBox.offsetTop;
 
         document.onmousemove = function () {
-            that.fnMove()
+            that.fnMove();
+            that.settings.beforeMove(that.oBox)
         };
         document.onmouseup = function () {
-            that.fnUp()
+            that.fnUp();
+            that.settings.beforeUp(that.oBox)
         }
     };
 
-    Drag.prototype.init = function () {
+    Drag.prototype.init = function (options) {
+        console.log(options);
+        //把options对象中的方法继承到this.settings中
+        extend(this.settings, options);
+        this.oBox = document.getElementById(options.id);
         var that = this;
         this.oBox.onmousedown = function () {
+            that.settings.beforeDown(this);
             that.fnDown()
         };
     };
 
+    function extend(obj1, obj2) {
+        for (var attr in obj2) {
+            obj1[attr] = obj2[attr]
+        }
+    }
 
-
-    var d1 = new Drag('box');
-    d1.init();
+    var d1 = new Drag();
+    d1.init({
+        id: 'box'
+    });
+    var d2 = new Drag();
+    d2.init({
+        id: 'box1',
+        beforeDown: function (obj) {
+            //添加文字
+            obj.innerHTML = "JS niubility";
+            obj.style.color = "white"
+        }
+    });
+    var d3 = new Drag();
+    d3.init({
+        id: 'box2',
+        beforeMove: function (obj) {
+            obj.style.backgroundColor = "black"
+        }
+    });
+    var d4 = new Drag();
+    d4.init({
+        id: 'box3',
+        beforeUp: function (obj) {
+            alert(1)
+        }
+    })
 </script>
 </body>
 </html>
