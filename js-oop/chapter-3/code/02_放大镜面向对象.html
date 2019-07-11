@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box {
+            width: 500px;
+            height: 234px;
+            position: relative;
+            border: 1px solid #cccccc;
+            left: 20px;
+            top: 10px;
+        }
+        #box img {
+            width: 500px;
+            height: 234px;
+        }
+        #box span {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: rgba(255, 255, 0, 0.5);
+            display: none;
+        }
+
+        #box2 {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            left: 540px;
+            top: 18px;
+            border: 1px solid #cccccc;
+            overflow: hidden;
+            display: none;
+        }
+        #bigImg {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <img src="../img/01.jpg" alt="">
+    <span id="backDrop"></span>
+</div>
+
+<div id="box2">
+    <img id="bigImg" src="../img/02.jpg" alt="">
+</div>
+
+<script>
+    function ScaleGlass() {
+        this.oBox = document.getElementById('box');
+        this.oBackDrop = document.getElementById('backDrop');
+        this.oBox2 = document.getElementById('box2');
+        this.oBigImg = document.getElementById('bigImg');
+    }
+    ScaleGlass.prototype.init = function () {
+        var that = this;
+        this.oBox.onmouseover = function () {
+            that.fnOver()
+        };
+        this.oBox.onmouseout = function () {
+            that.fnDown()
+        };
+        this.oBox.onmousemove = function (ev) {
+            that.fnMove(ev)
+        }
+    };
+    ScaleGlass.prototype.fnOver = function () {
+        this.oBackDrop.style.display = 'block';
+        this.oBox2.style.display = 'block';
+    };
+    ScaleGlass.prototype.fnDown = function () {
+        this.oBackDrop.style.display = 'none';
+        this.oBox2.style.display = 'none'
+    };
+    ScaleGlass.prototype.fnMove = function (ev) {
+        var ev = ev || window.event;
+        var L = ev.clientX - this.oBox.offsetLeft - this.oBackDrop.offsetHeight/2;
+        var T = ev.clientY - this.oBox.offsetTop - this.oBackDrop.offsetHeight/2;
+        if (L < 0) {
+            L = 0
+        }
+        if (L > this.oBox.offsetWidth - this.oBackDrop.offsetWidth) {
+            L = this.oBox.offsetWidth - this.oBackDrop.offsetWidth
+        }
+        if (T < 0) {
+            T = 0
+        }
+        if (T > this.oBox.offsetHeight - this.oBackDrop.offsetHeight) {
+            T = this.oBox.offsetHeight - this.oBackDrop.offsetHeight
+        }
+        //鼠标箭头居中
+        this.oBackDrop.style.left = L + 'px';
+        this.oBackDrop.style.top = T + 'px';
+
+        //求百分比
+        var scaleX = L/(this.oBox.offsetWidth - this.oBackDrop.offsetWidth);
+        var scaleY = T/(this.oBox.offsetHeight - this.oBackDrop.offsetHeight);
+
+        this.oBigImg.style.left = -scaleX * (1500 - this.oBox2.offsetWidth) + 'px';
+        this.oBigImg.style.top = -scaleY * (703 - this.oBox2.offsetHeight) + 'px'
+    };
+
+
+    var s = new ScaleGlass();
+    s.init()
+</script>
+</body>
+</html>

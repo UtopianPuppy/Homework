@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box {
+            width: 500px;
+            height: 234px;
+            position: relative;
+            border: 1px solid #cccccc;
+            left: 20px;
+            top: 10px;
+        }
+        #box img {
+            width: 500px;
+            height: 234px;
+        }
+        #box span {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: rgba(255, 255, 0, 0.5);
+            display: none;
+        }
+
+        #box2 {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            left: 540px;
+            top: 18px;
+            border: 1px solid #cccccc;
+            overflow: hidden;
+            display: none;
+        }
+        #bigImg {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <img src="../img/01.jpg" alt="">
+        <span id="backDrop"></span>
+    </div>
+
+    <div id="box2">
+        <img id="bigImg" src="../img/02.jpg" alt="">
+    </div>
+
+    <script>
+        var oBox = document.getElementById('box');
+        var oBackDrop = document.getElementById('backDrop');
+        var oBox2 = document.getElementById('box2');
+        var oBigImg = document.getElementById('bigImg');
+
+         oBox.onmouseover = function () {
+             oBackDrop.style.display = 'block';
+             oBox2.style.display = 'block';
+         };
+         oBox.onmouseout = function () {
+             oBackDrop.style.display = 'none';
+             oBox2.style.display = 'none'
+         };
+         oBox.onmousemove = function (ev) {
+             var ev = ev || window.event;
+             var L = ev.clientX - oBox.offsetLeft - oBackDrop.offsetHeight/2;
+             var T = ev.clientY - oBox.offsetTop - oBackDrop.offsetHeight/2;
+             if (L < 0) {
+                 L = 0
+             }
+             if (L > oBox.offsetWidth - oBackDrop.offsetWidth) {
+                 L = oBox.offsetWidth - oBackDrop.offsetWidth
+             }
+             if (T < 0) {
+                 T = 0
+             }
+             if (T > oBox.offsetHeight - oBackDrop.offsetHeight) {
+                 T = oBox.offsetHeight - oBackDrop.offsetHeight
+             }
+             //鼠标箭头居中
+             oBackDrop.style.left = L + 'px';
+             oBackDrop.style.top = T + 'px';
+
+             //求百分比
+             var scaleX = L/(oBox.offsetWidth - oBackDrop.offsetWidth);
+             var scaleY = T/(oBox.offsetHeight - oBackDrop.offsetHeight);
+
+             oBigImg.style.left = -scaleX * (1500 - oBox2.offsetWidth) + 'px';
+             oBigImg.style.top = -scaleY * (703 - oBox2.offsetHeight) + 'px'
+         }
+    </script>
+</body>
+</html>
