@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .slide-container {
+            width: 100%;
+            max-height: 600px;
+            /*height: 100%;*/
+            position: relative;
+            border: 4px solid black;
+        }
+        .slide-side {
+            /*position: relative;*/
+            display: none;
+        }
+        .slide-side img {
+            height: 600px;
+            width: 100%;
+        }
+
+        .page-btn-group {
+            position: absolute;
+            right: 20px;
+            bottom: 10px;
+        }
+        .page-btn-group span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: white;
+        }
+        .page-btn-group .btn-switch {
+            width: 25px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+    <div class="slide-side" style="display:block;">
+        <a href="#"><img src="img/banner01.jpg" alt=""></a>
+    </div>
+    <div class="slide-side">
+        <a href="#"><img src="img/banner02.jpg" alt=""></a>
+    </div>
+    <div class="slide-side">
+        <a href="#"><img src="img/banner03.jpg" alt=""></a>
+    </div>
+    <div class="slide-side">
+        <a href="#"><img src="img/banner04.jpg" alt=""></a>
+    </div>
+
+    <div class="page-btn-group">
+        <span class="btn-switch"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+<script>
+    function SlideShow() {
+        //轮播思路--> setInterval
+        this.oSlideContainer = document.getElementsByClassName('slide-container')[0];
+        this.aSlideSide = this.oSlideContainer.getElementsByClassName('slide-side');
+        this.oPageBtn = this.oSlideContainer.getElementsByClassName('page-btn-group')[0];
+        this.aSpan = this.oPageBtn.getElementsByTagName('span');
+        this.nowIndex = 0;
+        this.timer = 0;
+    }
+    SlideShow.prototype.autoPlay = function () {
+        var that = this;
+        this.timer = setInterval(function () {
+            that.nowIndex++;
+            that.nowIndex = that.nowIndex % that.aSlideSide.length;
+            that.changeTab(that.nowIndex);
+        }, 1000)
+    };
+    SlideShow.prototype.changeTab = function (index) {
+        for (var i=0;i<this.aSlideSide.length;i++) {
+            this.aSlideSide[i].style.display = 'none';
+            this.aSpan[i].style.backgroundColor = 'white';
+            this.aSpan[i].style.width = '10px'
+        }
+        this.aSlideSide[index].style.display = 'block';
+        this.aSpan[index].style.backgroundColor = 'black';
+        this.aSpan[index].style.width = '20px'
+    };
+    SlideShow.prototype.stop = function () {
+        clearInterval(this.timer)
+    };
+    SlideShow.prototype.init = function () {
+        var that = this;
+        this.autoPlay();
+
+        this.oSlideContainer.onmouseover = function () {
+            that.stop()
+        };
+
+        this.oSlideContainer.onmouseout = function () {
+            that.autoPlay()
+        };
+
+        for (var i=0;i<this.aSpan.length;i++) {
+            this.aSpan[i].index = i;
+            this.aSpan[i].onclick = function () {
+                that.changeTab(this.index);
+                that.nowIndex = this.index;
+            }
+        }
+    };
+
+    var s1= new SlideShow();
+    s1.init()
+</script>
+</body>
+</html>
