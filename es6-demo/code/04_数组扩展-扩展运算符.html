@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let arr = [1,2,3,4];
+    console.log(...arr);
+
+    function fn(x, y, z) {
+        console.log(x, y, z)
+    }
+    fn(...arr);
+
+    function fn2(a, b, c, d, e, f, g) {
+        console.log(a,b,c,d,e,g)
+    }
+    fn2(1,2,...arr,9)
+</script>
+</body>
+</html>

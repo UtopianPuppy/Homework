@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //复制数组 es5
+    let arr = [1,2,3];
+    let arr2 = arr.concat();
+    arr2.push(4);
+    console.log(arr2);
+
+    //es6中的简便方法
+    let arr3 = [...arr];
+    arr3.push(9);
+    console.log(arr, arr3);
+
+    //合并数组
+    let arr4 = [4,5,6];
+    console.log(...arr,...arr4);
+
+    //生成一个数组
+    let [a,b,...rest] = [1,2,3,4,5,6,7,8];
+    console.log(rest)
+</script>
+</body>
+</html>

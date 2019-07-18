@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //数组的解构赋值
+//    let [a, b] = [1, 2];
+//    console.log(a, b);
+
+    //需求：交换两个变量内容
+//    let x = 10;
+//    let y = 20;
+//    [x, y] = [y, x];
+//    console.log(x, y)
+
+    //注意： 解构不成功时，值为undefined
+
+//    let [x, y] = [10];
+//    console.log(x, y)
+
+    //可以设置默认值
+//    let [x, y = 20] = [10];
+//    console.log(x, y)
+
+    //可以使用...(扩展运算符)
+//    let [a, b, ...c] = [1, 2, 3, 4, 5, 6, 7];
+//    console.log(a, b, c)
+
+    let obj = {
+        p: ["Hello",
+            {y: "World"}
+        ]
+    };
+
+    let {p, p: [x, {y}]} = obj;
+    console.log(p, p)
+</script>
+</body>
+</html>
