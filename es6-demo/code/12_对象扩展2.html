@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //扩展运算符 es2018中引入对象
+    let {a, b, ...c} = {c: 1, b: 2, a: 3, d: 4};
+    //    console.log(a, b, c);
+
+    //新增的方法
+    //Object.is() 行为类似于 ===
+    console.log(Object.is(1, '1')); //false
+    //修复 NaN不等于自己的问题
+    console.log(NaN === NaN); //false
+    console.log(Object.is(NaN, NaN)); //true
+
+    //合并对象
+    let obj1 = {a: 1};
+    let obj2 = {b: 2};
+    let obj3 = {c: 3};
+    console.log(Object.assign(obj1, obj2, obj3))
+</script>
+</body>
+</html>

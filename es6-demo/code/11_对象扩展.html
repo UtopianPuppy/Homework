@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let name = 'xiaoqiang';
+    let age = '23';
+
+    //es5
+    let obj = {
+        name: name,
+        age: age
+    };
+    //es6 若key和value的一样，可直接简写如下
+    let obj2 = {
+        name,
+        age
+    };
+    console.log(obj2, obj);
+
+    //es5
+    let obj3 = {
+        showName: function () {
+            console.log(name)
+        }
+    };
+    //es6
+    let obj4 = {
+        showName() {
+            console.log(name)
+        }
+    };
+    obj4.showName();
+
+    //es5 属性
+    let obj5 = {
+        a: 'xxxx',
+        b: 23
+    };
+
+    let a = 'name';
+    let b = 'age';
+    let c = 'sex'
+
+    //es6
+    let obj6 = {
+        [a]: 'xiaoqiang',
+        [b + '1']: 23
+    };
+    obj6[c] = 'male';
+    console.log(obj6)
+
+</script>
+</body>
+</html>
