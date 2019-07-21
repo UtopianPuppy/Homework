@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<button id="btn">开始</button>
 <script>
     function Map() {
         this.width = 800;
@@ -30,7 +31,9 @@
         this.position = 'absolute';
         this.bgColor = 'orange';
         this.food = null;
-        this.map = document.getElementById('map')
+        this.map = document.getElementById('map');
+        this.x = 0;
+        this.y = 0
     }
     Food.prototype.init = function () {
         if (this.food == null) {
@@ -41,13 +44,125 @@
             this.food.style.backgroundColor = this.bgColor;
             this.map.appendChild(this.food)
         }
+
+        this.x = Math.floor(Math.random() * 40);
+        this.y = Math.floor(Math.random() * 20);
+        //x:(0, 39) y:(0, 19)
+        this.food.style.left = this.x * 20 + 'px';
+        this.food.style.top = this.y * 20 + 'px'
     };
 
-    var m = new Map();
-    m.init();
+    function Snake(f) {
+        this.width = 20;
+        this.height = 20;
+        this.position = 'absolute';
+        this.num = 0;
+        this.map = document.getElementById('map');
+        this.timer = null;
+        this.body = [
+            //[x, y, 颜色, div]
+            [3, 2, 'red', null],
+            [2, 2, 'blue', null],
+            [1, 2, 'blue', null]
+        ];
+        this.direct = 'right';
+        this.food = f;
 
-    var f = new Food();
-    f.init()
+    }
+    Snake.prototype.run = function () {
+        var that = this;
+        //创建蛇节
+        this.show();
+        //蛇节移动
+        this.timer = setInterval(function () {
+            that.move()
+        }, 100);
+        //控制方向
+        document.onkeyup = function (ev) {
+            var ev = ev || window.event;
+            that.setDirect(ev.keyCode);
+        }
+    };
+    Snake.prototype.show = function () {
+        for (var i=0;i<this.body.length;i++) {
+            if (this.body[i][3] == null) {
+                this.body[i][3] = document.createElement('div');
+                this.body[i][3].style.width = this.width + 'px';
+                this.body[i][3].style.height = this.height + 'px';
+                this.body[i][3].style.position = this.position;
+                this.body[i][3].style.backgroundColor = this.body[i][2];
+                this.map.appendChild(this.body[i][3]);
+            }
+
+            this.body[i][3].style.left = this.body[i][0] * 20 + 'px';
+            this.body[i][3].style.top = this.body[i][1] * 20 + 'px';
+        }
+    };
+    Snake.prototype.move = function () {
+        var len = this.body.length;
+        for (var i=len-1;i>0;i--) {
+            this.body[i][0] = this.body[i-1][0];
+            this.body[i][1] = this.body[i-1][1];
+        }
+        // this.body[0][0] += 1; 向右
+        switch (this.direct) {
+            case 'right':
+                this.body[0][0] += 1;
+                break;
+            case 'left':
+                this.body[0][0] -= 1;
+                break;
+            case 'up':
+                this.body[0][1] -= 1;
+                break;
+            case 'down':
+                this.body[0][1] += 1;
+                break;
+        }
+
+        //吃食物
+        if (this.body[0][0] === this.food.x && this.body[0][1] === this.food.y) {
+            var len = this.body.length;
+            var x = this.body[len - 1][0];
+            var y = this.body[len - 1][1];
+            this.body.push([x, y, 'blue', null]);
+            this.num++;
+            document.title = '得分:' + this.num;
+            this.food.init();
+        }
+        
+        if (this.body[0][0] < 0 || this.body[0][0] > 39 || this.body[0][1] < 0 || this.body[0][1] > 19) {
+            clearInterval(this.timer);
+            alert('游戏结束');
+            return
+        }
+        this.show()
+    };
+    Snake.prototype.setDirect = function (keycode) {
+        console.log(keycode);
+        switch (keycode) {
+            case 37: this.direct = 'left';
+                break;
+            case 38: this.direct = 'up';
+                break;
+            case 39: this.direct = 'right';
+                break;
+            case 40: this.direct = 'down';
+                break;
+        }
+    };
+
+    var oBtn = document.getElementById('btn');
+    oBtn.onclick = function (ev) {
+        var m = new Map();
+        m.init();
+
+        var f = new Food();
+        f.init();
+
+        var s = new Snake(f);
+        s.run();
+    }
 </script>
 </body>
 </html>
