@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1 Map是es6中新增的一种数据结构 类似于对象
+    let mp = new Map([
+        ['a', 1],
+        ['b', 2]
+    ]);
+    console.log(mp)
+
+    //2 为什么会有Map这种数据结构
+    //在对象中，对象属性名必须是字符串，如果是其他类型就不行
+    let k1 = {a: 1};
+    let k2 = {b: 2};
+    let obj = {
+        [k1]: '11',
+        [k2]: '22'
+    };
+    console.log(obj); //[object Object] : "22"
+
+    //Map是为了解决对象的属性名不能使用对象而创建的
+    let mp2 = new Map([
+        [k1, '111'],
+        [k2, '222']
+    ]);
+    console.log(mp2)
+</script>
+</body>
+</html>

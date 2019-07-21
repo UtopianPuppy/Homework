@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //Map相关方法
+    //1 set 设置键值对
+    let mp = new Map();
+    mp.set('a', 1);
+    console.log(mp)
+
+    //2 get 根据key获取value值
+    console.log(mp.get('a'));
+
+    //3 删除key
+    console.log(mp.delete('a'));
+
+    let mp2 = new Map([
+        ['cc', '111'],
+        ['bb', '222']
+    ])
+
+    //4 判断key是否存在
+    console.log(mp2.has('cc')); //true
+    console.log(mp2.has('aa')); //false
+
+    //5 清空
+    // mp2.clear();
+    // console.log(mp2)
+
+    console.log(mp2.keys());
+    for (let a of mp2.keys()) {
+        console.log(a)
+    }
+
+    for (let v of mp2.values()) {
+        console.log(v)
+    }
+
+    for (let item of mp2.entries()) {
+        console.log(item)
+    }
+
+    mp2.forEach(function (v, k, m) {
+        // console.log(v)
+        // console.log(k)
+        console.log(m)
+    })
+
+</script>
+</body>
+</html>
