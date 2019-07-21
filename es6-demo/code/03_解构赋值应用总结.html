@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //快速交换两个变量的值
+    let a = 10;
+    let b = 20;
+    [a, b] = [b, a];
+    console.log(a, b);
+
+    //函数的多个返回值
+    function fn() {
+        return [1, 2, 3]
+    }
+    let [x, y, z] = fn();
+    console.log(x, y, z);
+
+    //函数传参
+    function fn2([x, y, z]) {
+        console.log(x, y, z)
+    }
+    fn2([1, 2, 3]);
+    function fn3({x, y, z}) {
+        console.log(x, y, z)
+    }
+    fn3({z:3, y:2, x:1})
+
+    //关于json数据的提取 常用
+    let jsondata = {
+        name: 'xiaoqiang',
+        age: 18,
+        status: 'ok',
+        id:1
+    };
+    let {name, age, status, id} = jsondata;
+    console.log(name, age, status, id)
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //copyWithin 拷贝数组内的一些元素到数组的指定位置
+    let arr = [1, 2, 3, 4, 5, 6];
+    //第二个各参数为要拷贝的数组的起始位置，第三个参数为终止位置（不包括）
+//    arr.copyWithin(0, 3, 4);
+    arr.copyWithin(0, 3, 5);
+//    console.log(arr);
+
+    //fill, 用一个数字去填充整个数组
+    let arr2 = [1,2,3];
+    arr2.fill(0);
+//    console.log(arr2);
+
+    //entries, key, value 配合for...of 结构遍历数组
+    let arr3 = [5,6,7,8,9];
+    for (let index of arr3.keys()) {
+//        console.log(index)
+    }
+    for (let item of arr3.values()) {
+//        console.log(item)
+    }
+    for (let item of arr3.entries()) {
+//        console.log(item)
+    }
+
+    //find 和 findIndex
+    let arr4 = [1,2,3,4,5,6];
+    //查找数组里的元素，返回第一个符合条件的元素
+    let v = arr4.find(function (v, i, a) {
+//        console.log(v, i, a)
+        return v > 3
+    });
+    console.log(v); //4
+
+    //findIndex用法与find相同，但是返回的是下标
+    let i = arr4.findIndex(function (v, i, a) {
+        return v > 3
+    });
+    console.log(i); //3
+
+    //includes 检查元素是否在数组里
+    let arr5 = [3,4,5];
+    console.log(arr5.includes(1)); //false
+    console.log(arr5.includes(3)) //true
+</script>
+</body>
+</html>

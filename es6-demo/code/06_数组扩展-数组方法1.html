@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li>1111</li>
+    <li>1111</li>
+    <li>1111</li>
+    <li>1111</li>
+</ul>
+<script>
+    //Array.from 把伪数组转换成真正的数组
+    let ali = document.getElementsByTagName('li');
+    for (let i in Array.from(ali)) {
+        ali[i].style.color = 'red';
+    }
+
+    //Array.of 创建一个数组
+    //该方法的存在是为了弥补es5中Array方法的不足：传入参数不同，函数功能不同
+    let arr = Array.of(1, 2, 3, 4);
+    console.log(arr);
+
+//    let arr2 = Array(4); //表示规定数组长度为4
+//    console.log(arr2)
+
+    let arr2 = Array(1, 2);// [1,2]组成的数组
+    console.log(arr2)
+</script>
+</body>
+</html>

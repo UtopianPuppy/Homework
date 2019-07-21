@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //箭头函数 在es6中，可以使用 => 来定义函数，这种函数被称为箭头函数
+//    let f = function (n) {
+//        return n * 2
+//    }
+    //在es6中简写为 （只有一个参数和一条语句）
+    let f = n => n * 2;
+    console.log(f(2));
+
+    let arr = [1,2,3,4];
+    let num = arr.find(v => v > 3);
+    console.log(num);
+
+    //没有参数的时候，括号不能省略掉
+    let f2 = () => console.log('111');
+    f2();
+
+    //有多个参数的时候
+    let f3 = (a, b) => a + b;
+    console.log(f3(1, 2));
+
+    //有多条语句
+    let f4 = (a, b) => {
+        if (a > b) {
+            console.log(a)
+        } else {
+            console.log(b)
+        }
+    };
+    f4(10, 12)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1 Symbol里面传入的字符串只是用于描述Symbol的
+    //    console.log(Symbol('hello') === Symbol('hello')); //false
+
+    //2 不能用new关键字调用
+    //    let name = new Symbol('hello'); //报错
+
+    //3 做类型转换的时候 不能转换成数字
+    //    console.log(String(Symbol('hello'))); //Symbol('hello')
+    //    console.log(Boolean(Symbol('hello'))); //true
+    //    console.log(Number(Symbol('hello'))) //报错
+
+    //4 不能做任何运算
+    //    console.log(Symbol('111' + 1)) //报错
+
+    //5 如果把Symbol 用于对象的属性和方法，一定要用变量来存
+    let name = Symbol('name');
+    let obj = {
+        [name]: 'xiaoqiang'
+    };
+//    console.log(obj[name])
+
+    //6 for in的时候没有办法比遍历出来
+    let obj2 = {
+        a: 1,
+        b: 2,
+        [Symbol('name')]: 'xiaoqiang',
+        [Symbol('age')]: 23
+    };
+
+    for (let attr in obj2) {
+//        console.log(attr)
+    }
+
+    console.log(Object.getOwnPropertySymbols(obj2));
+
+</script>
+</body>
+</html>

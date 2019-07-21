@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //es6中支持默认参数
+    function fn(a, b = 'world') {
+        return a + b;
+    }
+    console.log(fn('Hello '));
+    console.log(fn('Hello ', ''));
+
+    //rest参数
+    //和普通参数混用要放在最后
+    function fn2(a,b,...arg) {
+        console.log(arg)
+    }
+    fn2(1,2,3,4,5)
+</script>
+</body>
+</html>

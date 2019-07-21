@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //关于this，箭头函数没有自己的this，其内部的this并不是指向调用它的对象，而是指向当前定义的对象
+
+//    document.onclick = function () {
+//        //谁调用指向谁
+//        console.log(this)
+//    };
+
+//    document.onclick = () => {
+//        //定义该箭头函数时是在window环境下定义的，所以指向window
+//        console.log(this)
+//    }
+
+    document.onclick = function () {
+        let f = () => {
+            console.log(this)
+        };
+        f()
+    }
+
+    //箭头函数不能用于构造函数，不能用new关键字
+
+    //箭头函数内部没有arguments对象
+
+    //
+</script>
+</body>
+</html>
