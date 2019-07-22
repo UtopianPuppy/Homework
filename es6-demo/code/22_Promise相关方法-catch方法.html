@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">模拟获取数据</button>
+<p id="result"></p>
+<script>
+    let oBtn = document.getElementById('btn');
+    let oResult = document.getElementById('result');
+    oBtn.onclick = ()=> {
+//        AsyncGetData().then((data)=>{
+//            oResult.innerHTML = data
+//        },(data)=> {
+//            oResult.innerHTML = "<span style='color: red;'>" + data + "</span>"
+//        });
+
+        //catch方法
+        AsyncGetData().then((data)=> {
+            alert(data);
+            oResult.innerHTML = data;
+            xxx
+        }).catch((data2) =>{
+            console.log(data2);
+            oResult.innerHTML = "<span style='color: red;'>" + data2 + "</span>"
+        })
+    };
+
+    function AsyncGetData() {
+        let num = Math.random() * 20;
+        let p = new Promise((resolve, reject)=>{
+            setTimeout(()=>{
+                if (num > 10) {
+                    resolve('这里是获取到的一些数据')
+                } else {
+                    reject('执行失败')
+                }
+            });
+        });
+        return p
+    }
+</script>
+</body>
+</html>

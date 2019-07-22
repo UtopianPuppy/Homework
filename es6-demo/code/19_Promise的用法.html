@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //注意 封装函数是因为Promise对象一经建立就会马上执行里面的异步代码
+    function AsynFn1() {
+        let p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('1--模拟图片加载成功……');
+                resolve()
+            }, 1000)
+        });
+        return p1
+    }
+
+    function AsynFn2() {
+        let p2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('2--模拟获取ajax信息成功……');
+                resolve()
+            }, 3000)
+        });
+        return p2
+    }
+
+    function AsynFn3() {
+        let p3 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log('3--模拟用户登录成功……');
+                resolve()
+            }, 2000)
+        });
+        return p3
+    }
+
+    //then函数的第一个参数是个函数块，该函数快被传给Promise里面的resolve中
+    AsynFn3().then(() => {
+        //图片加载成功以后需要执行的业务逻辑
+        console.log('用户已经登录');
+        return AsynFn2() //p2
+    }).then(()=>{
+        console.log("信息已发送");
+        return AsynFn1() //p1
+    }).then(()=>{
+        console.log("用户可以浏览图片了")
+    })
+
+//    AsynFn1()
+//    AsynFn2()
+//    AsynFn3()
+</script>
+</body>
+</html>

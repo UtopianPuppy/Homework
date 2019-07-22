@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">加载图片</button>
+<script>
+    let oBtn =document.getElementById('btn');
+    let arr = [
+//        'https://i0.hdslb.com/bfs/archive/9e140f2450a0e4854c5e5837ba2e2fc20ada8060.png',
+        'https://i0.hdslb.com/bfs/sycp/creative_img/201907/5f0421a7c417719fc9e5e62b14d75cc4.jpg@880w_440h.jpg',
+        'https://i0.hdslb.com/bfs/sycp/creative_img/201907/c64bb0e6aecb177574ede4536c115bfe.jpg@880w_440h.jpg',
+        'https://i0.hdslb.com/bfs/archive/ec98df8cff10aab768ea268e21456a1e50365317.jpg@880w_440h.jpg',
+        'https://i0.hdslb.com/bfs/archive/7f1c94e2d65913228fee868491581504fc4b464b.jpg@880w_440h.webp'
+    ];
+
+    function AsyncLoadImg(url) {
+        let p = new Promise((resolve, reject) => {
+            let oImg = new Image();
+            oImg.src = url;
+            oImg.onload = () => {
+                //图片加载的业务逻辑
+                resolve(oImg)
+            };
+            oImg.onerror = ()=>{
+                let error = new Error('图片没有加载成功');
+                reject(error)
+            }
+        });
+        return p
+    }
+
+    oBtn.onclick = ()=>{
+        Promise.all([AsyncLoadImg(arr[0]),AsyncLoadImg(arr[1]),AsyncLoadImg(arr[2]),AsyncLoadImg(arr[3])])
+            .then((result)=>{
+//            console.log(result)
+                for (let i=0;i<result.length;i++) {
+//                    console.log(result[i])
+                    result[i].title = '图片' + i;
+                    document.body.appendChild(result[i])
+                }
+            }).catch((err) => {
+            console.log(err)
+        })
+    }
+</script>
+</body>
+</html>

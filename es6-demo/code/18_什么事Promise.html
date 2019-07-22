@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //是es6中新增的一种构造函数
+    console.dir(Promise);
+
+    //如何去使用 Promise是一种异步的编程解决方案，就是把异步代码放到Promise里面去
+    //这里的resolve, reject都是函数块
+    let p = new Promise(function (resolve, reject) {
+        //这里写异步代码，加载网络图片、使用ajax请求等
+        setTimeout(function () {
+            resolve()
+        })
+    })
+
+    //Promise对象有三种状态：pending resolve rejected
+    //resolve 是个函数快，在异步代码执行成功后的回调函数
+    //reject 在异步代码执行失败后的回调函数
+
+</script>
+</body>
+</html>
