@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">抽奖</button>
+<input type="text" id="ipt"/>
+<script>
+    let oBtn = document.getElementById('btn');
+    let oIpt = document.getElementById('ipt');
+
+    //得到一个可迭代对象
+    let start = gen(5);
+
+    oBtn.onclick = () => {
+        //点击一次运行一次next()
+        start.next()
+    };
+
+    function draw(count) {
+        let prize = Math.floor(Math.random() * 31);
+        let index = 0;
+        let timmer = setInterval(() => {
+            index++;
+            if (index === prize) {
+                clearInterval(timmer);
+                alert("还剩" + count + "次机会");
+                return
+            }
+            oIpt.value = index;
+        }, 100)
+    }
+
+    function* gen(count) {
+        while (count > 0) {
+            count--;
+            yield draw(count)
+        }
+    }
+</script>
+</body>
+</html>

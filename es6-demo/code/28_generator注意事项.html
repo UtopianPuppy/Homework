@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1 generator内部不会马上执行，需要调用next方法才会去执行
+
+    function* gen() {
+        console.log(1);
+        yield '状态1';
+        console.log(2);
+        let result = yield '状态2';
+        console.log(result);
+        yield '状态3';
+        yield '状态4'
+    }
+    let it = gen();
+//    it.next(); //next方法执行完后返回一个对象{value: xxx, done:false}
+//    it.next();
+
+    //2 遇到yield关键字会暂停，再次调用next方法才会继续执行
+
+    //3 next可以传递参数 这个参数是上一个yield执行后的返回值
+//    it.next('hello');
+
+    //4 for...of循环gen()
+//    for (let a of it) {
+//        console.log(a)
+//    }
+
+    //5 对象是没有iterator接口的，可以手动部署一个
+    let obj = {};
+
+    obj[Symbol.iterator] = gen;
+
+    for (let i of obj) {
+        console.log(i)
+    }
+</script>
+</body>
+</html>

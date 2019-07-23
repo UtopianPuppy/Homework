@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //Iterator 是接口名字，为不同数据类型提供统一访问机制
+    //在编程接口中表现为一段代码
+
+    //一种数据结构被部署了Iterator接口，就可以被遍历（可以被迭代），即依次处理结构中的每个成员
+    let arr = [1, 2, 3];
+
+    //接口仿写
+    function Iterator(arr) {
+        let index = 0;
+        return {
+            next: () => {
+                if (index < arr.length) {
+                    return {value: arr[index++], done: false}
+                } else {
+                    return {value: undefined, done: true}
+                }
+            }
+        }
+    }
+
+    let it = Iterator(arr);
+//    console.log(it)
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+</script>
+</body>
+</html>

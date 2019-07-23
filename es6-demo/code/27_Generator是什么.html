@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1 generator是一个函数，es6中提供的一种异步解决方案，内部有各种状态，又可以把generator理解为一个状态机 生成器
+
+    //2 定义的时候跟普通函数不一样 使用yield关键字在内部定义状态
+    function* gen() {
+        yield '状态1';
+        yield '状态1';
+        yield '状态1';
+        yield '状态1'
+    }
+
+    //3 调用状态机后返回的是一个迭代器对象
+    let it = gen();
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+</script>
+</body>
+</html>

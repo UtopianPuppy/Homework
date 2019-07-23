@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //在es6中，在很多数据类型中是部署了iterator接口的，在底层就能实现
+    let arr = [1,2,3];
+    //只要一种数据类型具备Symbol.iterator属性，就认为是可以迭代的，可以被循环
+//    console.dir(arr[Symbol.iterator])
+    //arr[Symbol.iterator]是一个函数块
+    let it = arr[Symbol.iterator]();
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+
+    //String
+    let st = "hello";
+//    let sit = st[Symbol.iterator]();
+//    console.log(sit.next())
+//    console.log(sit.next())
+//    console.log(sit.next())
+//    console.log(sit.next())
+//    console.log(sit.next())
+//    console.log(sit.next())
+    for (let s of st) {
+        console.log(s)
+    }
+
+    //对象不可以被迭代
+    let obj = {
+        name: 'xiaoqiang',
+        age: 18
+    };
+    for (let attr of obj) {
+        console.log(attr)
+    }
+</script>
+</body>
+</html>
