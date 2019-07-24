@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app', //把id为app的这个div作为这个应用的根节点
+        data: {
+            //所有数据都存储在data身上
+            message: 'hello'
+        }
+    });
+
+    //调用实例对象的属性和方法要以$开头
+//    console.log(vm.$el)
+    console.log(vm.$data.message)
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //面向对象编程
+    //    function Person(name, age) {
+    //        this.name = name;
+    //        this.age = age
+    //    }
+    //    Person.prototype.showName = function () {
+    //        alert(this.name)
+    //    }
+
+    //es6
+    //class是js中写面向对象的语法糖
+    class Person {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age
+        }
+
+        showName() {
+            alert(this.name)
+        }
+    }
+
+    let p = new Person('xiaoqiang', 13);
+    p.showName()
+
+    //注意 1 constructor构造方法 当new Person的时候，constructor就会被执行
+    //2 方法之间不要加逗号
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //匿名函数自执行
+    var module = (function () {
+        var _name = 'xiaoqiang';
+
+        function fn1() {
+            alert(1)
+        }
+
+        function fn2() {
+            alert(_name)
+        }
+        return {
+            fn1: fn1,
+            fn2: fn2
+        }
+    })();
+
+    console.log(module);
+    module.fn1();
+    module.fn2();
+</script>
+</body>
+</html>
