@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="ipt" v-on:keyup.enter = 'fn'>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#ipt',
+        methods: {
+            fn() {
+                alert('执行搜索')
+            }
+        }
+    })
+
+    //其他修饰符：.space .tab .delete .esc .space .up .down .left .right
+</script>
+</body>
+</html>

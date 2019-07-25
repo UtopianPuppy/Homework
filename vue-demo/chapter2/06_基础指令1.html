@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button v-on:click = 'fn'>点击</button>
+    <p v-if="flag">Hello world</p>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            flag: true
+        },
+        methods: {
+            fn() {
+                this.flag = !this.flag
+            }
+        }
+    })
+</script>
+</body>
+</html>

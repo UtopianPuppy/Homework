@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="say">点击</button>
+    <button v-on:mouseover="say2">移入</button>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        methods: {
+            say() {
+                alert(1)
+            },
+            say2() {
+                alert(1)
+            }
+        }
+    })
+
+    //事件绑定：v-on:事件名称 = "事件处理函数"
+</script>
+</body>
+</html>

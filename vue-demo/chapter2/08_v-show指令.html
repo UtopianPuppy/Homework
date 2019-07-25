@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button v-on:click = 'fn'>点击</button>
+    <!--v-if指令直接把标签干掉-->
+    <p v-if="flag">hello</p>
+    <!--v-show指令设定标签样式为none-->
+    <p v-show="flag">hello</p>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            flag: true
+        },
+        methods: {
+            fn() {
+                this.flag = !this.flag
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--shift 必须按住shift键才能生效-->
+    <!--.ctrl .alt .meta(window)-->
+    <button v-on:click.shift = 'fn'>提交</button>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        methods:{
+            fn() {
+                alert('提交成功')
+            }
+        }
+    })
+</script>
+</body>
+</html>

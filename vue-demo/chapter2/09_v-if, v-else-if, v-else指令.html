@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button v-on:click='fn'>生成一个分数：{{num}}</button>
+    <p v-if="num >= 90">优秀</p>
+    <p v-else-if="num >= 80">良好</p>
+    <p v-else-if="num >= 70">中等</p>
+    <p v-else-if="num >= 60">及格</p>
+    <p v-else>不及格</p>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            num: 0
+        },
+        methods: {
+            fn() {
+                this.num = Math.floor(Math.random() * 101)
+            }
+        }
+    })
+</script>
+</body>
+</html>

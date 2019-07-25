@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #out {
+            width: 500px;
+            height: 400px;
+            background-color: orangered;
+        }
+        #inner {
+            width: 200px;
+            height: 150px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div id="out" v-on:click = "out">
+        <!--stop修饰符，阻止事件冒泡-->
+        <div id="inner" v-on:click.stop = 'inner'></div>
+    </div>
+    <!--prevent修饰符，防止默认行为-->
+    <a href="http://www.baidu.com" v-on:click.prevent>百度一下</a>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    //1 什么是事件修饰符 帮助我们去处理事件相关细节 处理防止事件冒泡 阻止默认行为
+    new Vue({
+        el: '#app',
+        methods: {
+            out() {
+                alert('这是一个外层盒子')
+            },
+            inner() {
+                //阻止inner盒子事件冒泡
+                alert('这是一个内层盒子')
+            }
+        }
+    })
+</script>
+</body>
+</html>
