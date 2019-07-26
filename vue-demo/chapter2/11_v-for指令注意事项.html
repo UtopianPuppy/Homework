@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button v-on:click='fn'>点击</button>
+    <ul>
+        <li v-for="item in arr">{{item}}</li>
+        <li v-for="(item, index) in obj">{{item}}:{{index}}</li>
+    </ul>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            arr: [1, 32, 45, 66, 833, 9],
+            obj: {
+                id:1,
+                name:'xiaoqiang',
+                age:23
+            }
+        },
+        methods: {
+            fn() {
+//                this.arr.sort((a,b) => {return a - b})
+                //操作对象
+                //属性的添加 必须用$set的方式去添加才行
+                vm.$set(this.obj, "num", 20)
+                //对象的删除
+                vm.$delete(this.obj, "id")
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

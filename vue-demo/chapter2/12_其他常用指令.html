@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--v-on:事件名称 绑定事件 简写@事件名称-->
+    <button @click ='fn'>点击</button>
+    <!--v-bind 绑定属性 简写 :属性 = ''-->
+    <a :href="href">百度一下</a>
+    <!--v-model 事件的双向绑定-->
+    <button @click = 'add'>增加</button>
+    <input type="text" v-model="val">
+    <p>{{val}}</p>
+    <hr>
+    <!--v-pre 跳过编译-->
+    <p v-pre>{{href}}</p>
+    <p v-cloak>{{href}}</p>
+    <hr>
+    <!--v-once 只渲染一次-->
+    <button @click = 'changeFn'>转换</button>
+    <p v-once>{{href}}</p>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    setTimeout(() => {
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                val: '123',
+                href: 'http://www.baidu.com',
+                arr: [1, 32, 45, 66, 833, 9],
+                obj: {
+                    id:1,
+                    name:'xiaoqiang',
+                    age:23
+                }
+            },
+            methods: {
+                fn() {
+//                this.arr.sort((a,b) => {return a - b})
+                    //操作对象
+                    //属性的添加 必须用$set的方式去添加才行
+                    vm.$set(this.obj, "num", 20)
+                    //对象的删除
+                    vm.$delete(this.obj, "id")
+                },
+                add() {
+                    this.val++
+                },
+                changeFn() {
+                    this.href = 'http://www.jd.com'
+                }
+            }
+
+        })
+    }, 3000)
+</script>
+</body>
+</html>

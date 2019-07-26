@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button @click = 'com'>计算属性运行结果：</button>
+    <p v-if="isCom">{{comMessage}}</p>
+    <br>
+    <button @click = 'fn'>方法运行结果：</button>
+    <p v-if="isFn">{{fnMessage()}}</p>
+    <hr>
+    <input type="text" v-model="msg">
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    //    计算属性：以一种属性的形式来调用，实际上内部是一堆罗辑
+    new Vue({
+        el: '#app',
+        data: {
+            msg: '12345',
+            isCom: true,
+            isFn: true
+        },
+        computed: {
+            //计算属性
+            comMessage() {
+                console.log('计算属性已执行');
+//                let t = new Date();
+//                return t.getMilliseconds(); //计算属性会把渲染的结果缓存起来，以便下次再次使用，避免了每次计算渲染占用资源
+                return this.msg
+            }
+        },
+        methods: {
+            //方法
+            fnMessage() {
+                console.log('方法已执行');
+                let t = new Date();
+                return t.getMilliseconds();
+            },
+            com() {
+                this.isCom = !this.isCom;
+            },
+            fn() {
+                this.isFn = !this.isFn
+            }
+        }
+    })
+</script>
+</body>
+</html>

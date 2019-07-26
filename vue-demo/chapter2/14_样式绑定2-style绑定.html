@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app" :style="[objStyle, objStyle2]"></div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            objStyle: {
+                width: '200px',
+                height: '100px',
+                backgroundColor: 'green'
+            },
+            objStyle2: {
+                border: '5px solid red'
+            }
+        }
+    })
+</script>
+</body>
+</html>

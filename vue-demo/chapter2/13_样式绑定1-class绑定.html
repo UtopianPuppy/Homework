@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .box1 {
+            width: 200px;
+            height: 100px;
+            background-color: green;
+        }
+        .box2 {
+            width: 500px;
+            height: 100px;
+            background-color: orangered;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--1 class绑定 :class = '变量名称' 2 如果有多个类作用在一个元素上 [para1, para2, para3...]-->
+    <div :class="[cBox, cBox1]"></div>
+    <div style="width: 100px;"></div>
+    <!--3 可以给一个布尔值来控制类是否显示-->
+    <hr>
+    <button @click = 'fn'>点击</button>
+    <div :class="{box2: isActive}"></div>
+
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            cBox: 'box',
+            cBox1: 'box1',
+            isActive: false
+        },
+        methods: {
+            fn() {
+                this.isActive = !this.isActive
+            }
+        }
+    })
+</script>
+</body>
+</html>
