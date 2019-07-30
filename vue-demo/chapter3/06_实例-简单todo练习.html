@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="inputValue"> <button @click = 'add'>添加</button>
+    <ul>
+        <!--<li v-for="item in todos">{{item}}</li>-->
+        <list-component v-for='(item, index) in todos' :i = 'index' @del = 'deltodo' :todo = 'item' :key="index"></list-component>
+    </ul>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component("list-component", {
+        template: `<li @click="$emit('del', i)">{{todo}}</li>`,
+        props: ['todo' , 'i']
+    });
+
+    new Vue({
+        el: '#app',
+        data: {
+            inputValue: "吃饭",
+            todos: ['吃饭', '睡觉', '游戏']
+        },
+        methods: {
+            add() {
+                this.todos.push(this.inputValue);
+                this.inputValue = ""
+            },
+            deltodo(index) {
+                // alert('111')
+                // alert(index)
+                this.todos = this.todos.filter((item, i)=>{
+                    return index !== i
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button-component v-on:myevent = 'fn'></button-component>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('button-component', {
+        template: `<button @click = "$emit('myevent', 'world')">click</button>`
+    });
+
+    new Vue({
+        el: '#app',
+        methods: {
+            fn(name) {
+                alert('hello ' + name)
+            }
+        }
+    })
+</script>
+</body>
+</html>
