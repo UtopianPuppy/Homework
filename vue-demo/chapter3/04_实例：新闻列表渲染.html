@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <news-component :ntitle = 'newstitle' :ndata = 'newsdata'></news-component>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('news-component', {
+        template: `<div :style = 'wrap'>
+                        <div :style = 'title' >{{ntitle}}</div>
+                        <div :style = 'content'>
+                            <ul>
+                                <li v-for="item in ndata">{{item.title}}</li>
+                            </ul>
+                        </div>
+                    </div>`,
+        props: ['ntitle', 'ndata'],
+        computed: {
+            wrap() {
+                return {
+                    width: '300px',
+                    height: '300px',
+                    border: '1px solid black'
+                }
+            },
+            title() {
+                return {
+                    height: '30px',
+                    lineHeight: '30px',
+                    textAlign: 'center',
+                    backgroundColor: 'green',
+                    color: 'white'
+                }
+            }
+        }
+    });
+
+    new Vue({
+        el: '#app',
+        data: {
+            newstitle: "国内新闻",
+            newsdata: [
+                {"title": "聚焦打赢砺雄师 牢记习近平这些话"},
+                {"title": "解放军在什么前提下介入香港事务?官方表态"},
+                {"title": "三架中国飞机直击长空 外国网友：干得漂亮"}
+            ]
+        }
+    })
+</script>
+</body>
+</html>

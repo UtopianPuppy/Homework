@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <header-component></header-component>
+    <main-component></main-component>
+    <footer-component></footer-component>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('header-component', {
+        template: "<div :style = 'styleObj'>这是头部区域</div>",
+        computed: {
+            styleObj() {
+                return {
+                    height: "100px",
+                    backgroundColor: "black",
+                    color: "white"
+                }
+            }
+        }
+    });
+    Vue.component('main-component', {
+        template: "<div :style = 'styleObj'><main-left></main-left><main-right></main-right></div>",
+        computed: {
+            styleObj() {
+                return {
+                    height: "400px",
+                    backgroundColor: "#ccc"
+                }
+            }
+        }
+    });
+    Vue.component('main-left', {
+        template: "<div :style = 'styleObj'></div>",
+        computed: {
+            styleObj() {
+                return {
+                    height: "400px",
+                    backgroundColor: 'orangered',
+                    float: 'left',
+                    width: '39%'
+                }
+            }
+        }
+    });
+    Vue.component('main-right', {
+        template: "<div :style = 'styleObj'></div>",
+        computed: {
+            styleObj() {
+                return {
+                    height: "400px",
+                    backgroundColor: 'blue',
+                    float: 'right',
+                    width: '60%'
+                }
+            }
+        }
+    });
+    Vue.component('footer-component', {
+        template: "<div :style = 'styleObj'></div>",
+        computed: {
+            styleObj() {
+                return {
+                    height: "100px",
+                    backgroundColor: "black"
+                }
+            }
+        }
+    });
+
+    new Vue({
+        el: '#app'
+    })
+</script>
+</body>
+</html>
