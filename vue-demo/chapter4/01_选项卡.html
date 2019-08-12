@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #tab {
+            border: 1px solid;
+            width: 450px;
+            position: relative;
+        }
+        #tab div {
+            display: none;
+            padding: 10px;
+            border: 1px solid black;
+            width: 428px;
+            margin-top: 55px;
+        }
+
+        #tab div.active {
+            display: block;
+        }
+
+        #tab button.active {
+            background-color: orange;
+        }
+
+        #tab button {
+            width: 150px;
+            height: 50px;
+            position: absolute;
+            top: 0;
+        }
+        #tab button:nth-of-type(2) {
+            margin-left: 150px;
+        }
+        #tab button:nth-of-type(3) {
+            margin-left: 300px;
+        }
+
+        #tab ul {
+            padding: 0;
+        }
+
+        #tab li {
+            list-style: none;
+            height: 40px;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div id="tab">
+        <template v-for="(tab, i) in tabData">
+            <button @click='changeTab(i)' :class="{active: index == i}">{{tab.tabTitle}}
+            </button>
+            <div :class="{active: index == i}">
+                <ul>
+                    <li v-for="news in tab.list" :key="news.id">{{news.newsTitle}}</li>
+                </ul>
+            </div>
+        </template>
+    </div>
+</div>
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            tabData: [
+                {
+                    tabTitle: '国内',
+                    list: [
+                        {id: 1, newsTitle: '大陆在香港强化“一国”弱化“两制”?外交部回应'},
+                        {id: 2, newsTitle: '中国大桥一动作刷新世界纪录 网友：这场面没谁了'},
+                        {id: 3, newsTitle: '日媒：因为中国 日本这一产品出口额大增'},
+                        {id: 4, newsTitle: '女县长伸2个手指头说“200” 商人把200万送给她'}
+                    ]
+                },
+                {
+                    tabTitle: '国际',
+                    list: [
+                        {id: 1, newsTitle: '英国哈里王子：考虑到地球环境 我最多要两个孩子'},
+                        {id: 2, newsTitle: '英美护航俄伊军演 两大阵营霍尔木兹海峡磨刀霍霍'},
+                        {id: 3, newsTitle: '特朗普演讲时虫子爬进头发 一反常态继续淡定讲话'},
+                        {id: 4, newsTitle: '特朗普要拿法国葡萄酒“开刀”？法农业部长:愚蠢'}
+                    ]
+                },
+                {
+                    tabTitle: '财经',
+                    list: [
+                        {id: 1, newsTitle: '中央定调下半年经济 释放多重政策信号'},
+                        {id: 2, newsTitle: '中美经贸磋商谈判今日在上海举行'},
+                        {id: 3, newsTitle: '沪指走低地产普跌 机构:成长股阶段占优'},
+                        {id: 4, newsTitle: '5800多名业主被万科坑惨 央视：再大的店也不能欺客'}
+                    ]
+                }
+            ],
+            index: 0
+        },
+        methods: {
+            changeTab(i) {
+//                alert(i)
+                this.index = i
+            }
+        }
+    })
+</script>
+</body>
+</html>

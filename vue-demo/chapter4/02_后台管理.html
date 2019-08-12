@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: hsla(0, 0%, 100%, .65);
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        #menu {
+            width: 200px;
+            height: 800px;
+            background-color: #001529;
+        }
+
+        #menu .logo {
+            height: 64px;
+            background-color: #002140;
+            padding-left: 16px;
+            line-height: 64px;
+        }
+
+        #menu .logo h1 {
+            font-size: 16px;
+            color: #fff;
+            margin: 0 0 0 5px;
+        }
+
+        #menu .logo h1, #menu .logo img {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .menu-content {
+            color: hsla(0, 0%, 100%, .65);
+            font-size: 14px;
+            padding: 0;
+        }
+
+        .menu-content .submenu {
+            padding-left: 16px;
+
+        }
+
+        .submenu .submenu-title {
+            padding: 10px 0;
+        }
+
+        .submenu .submenu-list {
+            padding-left: 16px;
+        }
+
+        .submenu .submenu-list li {
+            padding: 5px 0;
+        }
+
+        .submenu .submenu-list {
+            display: none;
+        }
+
+        .submenu .active {
+            display: block;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div id="menu">
+        <div class="logo">
+            <a href="http://nodeing.com">
+                <img src="img/logo.ico" alt="">
+                <h1>螺钉课堂后台管理</h1>
+            </a>
+        </div>
+        <ul class="menu-content">
+            <menu-list v-for = 'menu in menuData' :menuitem = 'menu' :key = 'menu.id'></menu-list>
+        </ul>
+    </div>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component("menu-list", {
+        template: `<li class="submenu">
+                        <div @click = 'show' class="submenu-title">{{menuitem.submenu_title}}</div>
+                        <ul class="submenu-list" :class = "{active: isShow}">
+                            <li v-for="submenu in menuitem.submenu_lists"><a :href="submenu.href">{{submenu.content}}</a></li>
+                        </ul>
+                   </li>`,
+        data() {
+            return {
+                isShow: false
+            }
+        },
+        methods: {
+            show() {
+                this.isShow = !this.isShow
+            }
+        },
+        props: ["menuitem"]
+    });
+    let menu =  [
+        {   id: 1,
+            submenu_title: '课程管理',
+            submenu_lists: [
+                {
+                    content: '课程列表',
+                    href: '/course/list'
+                },
+                {
+                    content: '创建课程',
+                    href: '/course/create'
+                },
+                {
+                    content: '课程统计',
+                    href: '/course/statistical'
+                },
+            ]
+        },
+        {
+            id:2,
+            submenu_title: '用户管理',
+            submenu_lists: [
+                {
+                    content: '用户列表',
+                    href: '/user/list'
+                },
+                {
+                    content: '增加用户',
+                    href: '/user/add'
+                },
+                {
+                    content: '在线用户',
+                    href: '/user/online'
+                },
+                {
+                    content: '登录日志',
+                    href: '/user/loginlog'
+                },
+                {
+                    content: '批量导入',
+                    href: '/user/import'
+                },
+            ]
+        },
+        {
+            id: 3,
+            submenu_title: '会员管理',
+            submenu_lists: [
+                {
+                    content: '全部会员',
+                    href: '/vip/all'
+                },
+                {
+                    content: '添加会员',
+                    href: '/vip/add'
+                },
+                {
+                    content: '会员等级',
+                    href: '/vip/level'
+                },
+                {
+                    content: '即将到期会员',
+                    href: '/vip/willexpire'
+                },
+                {
+                    content: '过期会员',
+                    href: '/vip/expired'
+                },
+            ]
+        },
+        {
+            id:4,
+            submenu_title: '系统设置',
+            submenu_lists: [
+                {
+                    content: '网站基础信息',
+                    href: '/system/basis'
+                },
+                {
+                    content: '主题设置',
+                    href: '/system/theme'
+                },
+                {
+                    content: '导航设置',
+                    href: '/system/nav'
+                },
+                {
+                    content: '友情链接',
+                    href: '/system/links'
+                },
+                {
+                    content: '财务设置',
+                    href: '/system/Finance'
+                },
+            ]
+        }
+    ];
+
+    new Vue({
+        el: '#app',
+        data: {
+            menuData: menu
+        }
+    })
+</script>
+</body>
+</html>
