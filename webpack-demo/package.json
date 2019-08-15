@@ -13,7 +13,17 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^4.2.0",
+    "font-awesome": "^4.7.0",
     "html-webpack-plugin": "^2.30.1",
+    "style-loader": "^0.19.1",
+    "url-loader": "^2.1.0",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7"
   }
